@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { HomeMobileComponent } from './home-mobile.component';
 import { Routes, RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 
 const routes: Routes = [
@@ -19,7 +20,8 @@ const routes: Routes = [
   imports: [
     CommonModule,
     RouterModule.forChild(routes),
-    FormsModule
+    FormsModule,
+    SharedModule
   ]
 })
 export class HomeMobileModule { }

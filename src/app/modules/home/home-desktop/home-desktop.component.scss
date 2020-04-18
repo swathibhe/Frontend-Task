@@ -1,0 +1,9 @@
+.sidebar-width {
+  max-width: 18rem;
+  .scroll-bar {
+    position: fixed;
+    max-height: -webkit-fill-available;
+    overflow-y: auto;
+    height: calc(100% - 3.3rem);
+  }
+}

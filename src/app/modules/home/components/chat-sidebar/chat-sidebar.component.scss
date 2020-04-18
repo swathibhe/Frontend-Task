@@ -1,0 +1,12 @@
+.chat-list {
+  max-width: 18rem;
+  border-bottom: 1px solid #e2e0e0;
+  cursor: pointer;
+  span {
+    font-size: 14px;
+  }
+}
+.active {
+  border-right: 3px solid #fdb62e;
+  background: #ffe9bf;
+}

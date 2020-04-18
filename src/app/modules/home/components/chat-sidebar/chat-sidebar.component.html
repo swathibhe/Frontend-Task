@@ -1,0 +1,7 @@
+<div *ngFor="let item of chatItemList">
+    <div class="chat-list p-3" [class.active]="item.id == chatId">
+        <div class="font-weight-bold text-capitalize">{{item.name? item.name : 'New Note'}}</div>
+        <span class="text-capitalize font-weight-normal pr-2">{{item.date}}</span>
+        <span class="font-weight-light">{{item.description | slice:0:10}}</span>
+    </div>
+</div>

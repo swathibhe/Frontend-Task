@@ -1,0 +1,22 @@
+<header>
+    <div class="header-view">
+        <div class="row">
+            <div class="col-4 col-sm-4 col-md-4 col-lg-4 col-xl-4 text-right col-hgt">
+                <span *ngIf="getResolution === true && sideToggleClick === false" class="sidebar-toggle"
+                    (click)="sideToggle()">☰</span>
+                <span *ngIf="getResolution === true && sideToggleClick === true" class="sidebar-toggle"
+                    (click)="sideToggle()" [ngStyle]="{'font-weight':sideToggleClick === true ? '900' : '' }">×</span>
+                <button class="delete-btn" [ngClass]="getResolution === true ? 'edit-mobile' : ''">
+                    <i class="fas fa-trash-alt"></i>
+                </button>
+                <button class="edit-btn" [ngClass]="getResolution === true ? 'edit-mobile' : ''">
+                    <i class="fas fa-edit"></i>
+                </button>
+            </div>
+            <div class="col-7 col-sm-7 col-md-7 col-lg-7 col-xl-7 col-hgt">
+                <input [ngClass]="getResolution === false ? 'search-desk' : 'search-mobile'" type="text" class="search"
+                    placeholder="Search..">
+            </div>
+        </div>
+    </div>
+</header>
