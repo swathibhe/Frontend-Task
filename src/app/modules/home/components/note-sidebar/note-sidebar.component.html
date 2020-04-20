@@ -1,0 +1,27 @@
+<div *ngIf="!getResolution">
+    <div *ngFor="let item of noteItemList">
+        <div class="note-list p-3" [class.active]="item.id == noteId" (click)="editNote(item)">
+            <div class="text-flow font-weight-bold text-capitalize pb-3">{{item.name? item.name : 'New Note'}}</div>
+            <div class="text-flow">
+                <span class="text-capitalize font-weight-normal pr-2">{{dateSet(item.date)}}</span>
+                <span class="font-weight-light">{{item.description}}</span>
+            </div>
+        </div>
+    </div>
+</div>
+<div *ngIf="getResolution">
+    <div *ngFor="let item of noteItemList;let i = index" class="card mgb-10">
+        <div class="note-list mobile-note-item p-3" (click)="editNote(item)">
+            <div class="text-flow font-weight-bold text-capitalize pb-3">{{item.name? item.name : 'New Note'}}</div>
+            <div class="text-flow">
+                <span class="text-capitalize font-weight-normal pr-2">{{dateSet(item.date)}}</span>
+                <span class="font-weight-light">{{item.description}}</span>
+            </div>
+        </div>
+        <div *ngIf="item.id == noteId" class="mg-10 p-3">
+            <div class="text-center pb-2">{{date | date:'medium'}}</div>
+            <input type="text" autofocus class="w-75 ml-5" placeholder="Please enter text.." [(ngModel)]="item.name"
+                (input)="onTitleChange($event.target.value)">
+        </div>
+    </div>
+</div>

@@ -1,18 +1,15 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HeaderComponent } from '../core/components/header/header.component';
-import { ChatSidebarComponent } from '../modules/home/components/chat-sidebar/chat-sidebar.component';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HighlightDirective } from './services/highlight.directive';
+import { NoteSidebarComponent } from '../modules/home/components/note-sidebar/note-sidebar.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
-  declarations: [HeaderComponent, ChatSidebarComponent, HighlightDirective],
+  declarations: [HeaderComponent, NoteSidebarComponent],
   imports: [
     CommonModule,
     FormsModule,
-    ReactiveFormsModule
   ],
-  exports: [HeaderComponent, ChatSidebarComponent, HighlightDirective],
-  providers: [HighlightDirective]
+  exports: [HeaderComponent, NoteSidebarComponent],
 })
 export class SharedModule { }

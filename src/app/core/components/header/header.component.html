@@ -1,12 +1,9 @@
 <header>
     <div class="header-view">
         <div class="row">
-            <div class="col-4 col-sm-4 col-md-4 col-lg-4 col-xl-4 text-right col-hgt">
-                <!-- <span *ngIf="getResolution === true && sideToggleClick === false" class="sidebar-toggle"
-                    (click)="sideToggle()">☰</span>
-                <span *ngIf="getResolution === true && sideToggleClick === true" class="sidebar-toggle"
-                    (click)="sideToggle()" [ngStyle]="{'font-weight':sideToggleClick === true ? '900' : '' }">×</span> -->
-                <button class="delete-btn" [ngClass]="getResolution === true ? 'edit-mobile' : ''"
+            <div class="col-4 col-sm-4 col-md-4 col-lg-4 col-xl-4 text-left col-hgt">
+                <span *ngIf="getResolution === false" class="header-title pr-3">Note Pad</span>
+               <button class="delete-btn" [ngClass]="getResolution === true ? 'edit-mobile' : ''"
                     (click)="deleteItem()">
                     <i class="fas fa-trash-alt"></i>
                 </button>

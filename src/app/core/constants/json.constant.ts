@@ -1,4 +1,4 @@
-export const CHAT_LIST = [
+export const NOTE_LIST = [
     {
         name: 'Blog Post',
         date: new Date('April 16, 2020 23:15:30'),

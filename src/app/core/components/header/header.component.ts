@@ -1,6 +1,4 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
-import { Router } from '@angular/router';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { Component, OnInit } from '@angular/core';
 import { ApplicationStateService } from 'src/app/shared/services/application-state.service';
 import { LocalStorageService } from 'src/app/shared/services/local-storage.service';
 import { AppData } from 'src/app/shared';
@@ -26,16 +24,8 @@ export class HeaderComponent implements OnInit {
   ngOnInit() {
   }
 
-  // sideToggle() {
-  //   if (!this.sideToggleClick) {
-  //     this.sideToggleClick = true;
-  //   } else {
-  //     this.sideToggleClick = false;
-  //   }
-  // }
-
   AddItem() {
-    this.noteList = this.localStorage.getItem('chatData');
+    this.noteList = this.localStorage.getItem('noteData');
     this.searchValue = '';
     const date = new Date()
     let newObj = {
@@ -46,26 +36,26 @@ export class HeaderComponent implements OnInit {
     }
     this.noteList.push(newObj);
     console.log(this.noteList);
-    AppData.chatSub$.next(this.noteList);
+    AppData.noteSub$.next(this.noteList);
     AppData.selectedItem$.next(newObj);
   }
 
   deleteItem() {
-    this.noteList = this.localStorage.getItem('chatData');
+    this.noteList = this.localStorage.getItem('noteData');
     this.searchValue = '';
     console.log(AppData.selectedNote, 'delete', this.noteList);
     const deleteItem = AppData.selectedNote;
     if (deleteItem['id']) {
       const index = this.noteList.findIndex(item => item.outletId == deleteItem['id']);
       this.noteList.splice(index, 1);
-      AppData.chatSub$.next(this.noteList);
+      AppData.noteSub$.next(this.noteList);
       AppData.selectedItem$.next(this.noteList[this.noteList.length - 1]);
     }
   }
 
   searchNote(searchStr) {
     console.log(searchStr, '------>');
-    const noteListArry = JSON.parse(JSON.stringify(AppData.detailsChatList));
+    const noteListArry = JSON.parse(JSON.stringify(AppData.detailsNoteList));
     const filterNotes = this.filterNoteList(noteListArry, searchStr.toUpperCase());
     console.log(filterNotes, 'filterNotes');
     AppData.filterNotes.next(filterNotes);

@@ -3,7 +3,7 @@ import { AppData } from 'src/app/shared';
 
 export abstract class HomeComponent {
 
-    public chatItemList = AppData.detailsChatList;
+    public noteItemList = AppData.detailsNoteList;
     public date = new Date();
     title: String = '';
     selectedItem;
@@ -13,34 +13,34 @@ export abstract class HomeComponent {
     ngOnInit() {
     }
 
-    chatItemDetails(event) {
+    noteItemDetails(event) {
         if (event) {
             this.title = event.name;
             this.selectedItem = event;
         }
-        if (AppData.detailsChatList.length === 0) {
+        if (AppData.detailsNoteList.length === 0) {
             this.title = '';
-            this.chatItemList = [];
+            this.noteItemList = [];
         } else {
-            this.chatItemList = AppData.detailsChatList;
+            this.noteItemList = AppData.detailsNoteList;
         }
 
     }
     onTitleChange(titleValue: string) {
-        this.chatItemList.find(item => {
+        this.noteItemList.find(item => {
             if (item.id == this.selectedItem.id) {
                 item.name = titleValue;
             }
         })
-        AppData.chatSub$.next(this.chatItemList);
+        AppData.noteSub$.next(this.noteItemList);
     }
 
     updateNoteItems() {
-        this.chatItemList = AppData.detailsChatList;
+        this.noteItemList = AppData.detailsNoteList;
     }
 
     filerNotesList(filerItems) {
-        this.chatItemList = filerItems;
+        this.noteItemList = filerItems;
     }
     titleChange(titleValue) {
         this.onTitleChange(titleValue);

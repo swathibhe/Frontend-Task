@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ChatSidebarComponent } from './chat-sidebar.component';
+import { NoteSidebarComponent } from './note-sidebar.component';
 
-describe('ChatSidebarComponent', () => {
-  let component: ChatSidebarComponent;
-  let fixture: ComponentFixture<ChatSidebarComponent>;
+describe('NoteSidebarComponent', () => {
+  let component: NoteSidebarComponent;
+  let fixture: ComponentFixture<NoteSidebarComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ChatSidebarComponent ]
+      declarations: [ NoteSidebarComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ChatSidebarComponent);
+    fixture = TestBed.createComponent(NoteSidebarComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

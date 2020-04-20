@@ -6,41 +6,41 @@ import { map } from 'rxjs/operators';
 import { FormControl } from '@angular/forms';
 
 @Component({
-  selector: 'app-chat-sidebar',
-  templateUrl: './chat-sidebar.component.html',
-  styleUrls: ['./chat-sidebar.component.scss']
+  selector: 'app-note-sidebar',
+  templateUrl: './note-sidebar.component.html',
+  styleUrls: ['./note-sidebar.component.scss']
 })
-export class ChatSidebarComponent implements OnInit {
+export class NoteSidebarComponent implements OnInit {
 
-  @Input() chatData;
-  @Output() chatItem = new EventEmitter();
+  @Input() noteData;
+  @Output() noteItem = new EventEmitter();
   @Output() updateItemsList = new EventEmitter();
   @Output() filterNote = new EventEmitter();
   @Output() titleChange = new EventEmitter();
 
-  chatItemList = [];
+  noteItemList = [];
   public date = new Date();
   getResolution: boolean;
   title: string;
-  chatId;
+  noteId;
 
   constructor(private applicationStateService: ApplicationStateService) {
     this.getResolution = applicationStateService.getIsMobileResolution();
   }
 
   ngOnInit(): void {
-    const chatDataList = JSON.parse(JSON.stringify(this.chatData));
-    this.chatItemList = JSON.parse(JSON.stringify(chatDataList.reverse()));
-    AppData.chatSub$.subscribe((obj) => {
-      const chatDataList = JSON.parse(JSON.stringify(obj));
-      this.chatItemList = JSON.parse(JSON.stringify(chatDataList.reverse()));
-      this.chatId = chatDataList.length;
+    const noteDataList = JSON.parse(JSON.stringify(this.noteData));
+    this.noteItemList = JSON.parse(JSON.stringify(noteDataList.reverse()));
+    AppData.noteSub$.subscribe((obj) => {
+      const noteDataList = JSON.parse(JSON.stringify(obj));
+      this.noteItemList = JSON.parse(JSON.stringify(noteDataList.reverse()));
+      this.noteId = noteDataList.length;
       this.emitSelectItem();
     });
 
     AppData.selectedItem$.subscribe(item => {
       if (item) {
-        this.chatId = item.id;
+        this.noteId = item.id;
         this.updateItemsList.emit();
         this.emitSelectItem();
       }
@@ -49,34 +49,27 @@ export class ChatSidebarComponent implements OnInit {
     AppData.filterNotes.subscribe(item => {
       if (item !== null) {
         this.filterNote.emit(item);
-        const chatDataList = JSON.parse(JSON.stringify(item));
-        this.chatItemList = JSON.parse(JSON.stringify(chatDataList.reverse()));
+        const noteDataList = JSON.parse(JSON.stringify(item));
+        this.noteItemList = JSON.parse(JSON.stringify(noteDataList.reverse()));
         if (item.length > 0) {
-          this.chatId = item[item.length - 1].id;
+          this.noteId = item[item.length - 1].id;
           this.emitSelectItem();
         }
       }
     })
-    console.log(this
-      .searchedWordsControl
-      .valueChanges
-      .pipe(
-        map((search: string) => search.trim().split(' '))
-      ));
     
   }
 
   emitSelectItem() {
-    const findItem = this.chatItemList.find(item => item.id == this.chatId);
-    console.log(findItem);
-    this.chatItem.emit(findItem);
+    const findItem = this.noteItemList.find(item => item.id == this.noteId);
+    this.noteItem.emit(findItem);
     AppData.selectedNote = findItem;
   }
 
   editNote(item) {
     if (item.id) {
-      this.chatId = item.id;
-      this.chatItem.emit(item);
+      this.noteId = item.id;
+      this.noteItem.emit(item);
       AppData.selectedNote = item;
     }
   }
