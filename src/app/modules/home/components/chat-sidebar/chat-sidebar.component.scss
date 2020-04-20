@@ -10,3 +10,15 @@
   border-right: 3px solid #fdb62e;
   background: #ffe9bf;
 }
+.mobile-note-item {
+  max-width: 100% !important;
+  background: #efe9e0;
+}
+.text-flow {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+::ng-deep .selected {
+  background: green;
+}

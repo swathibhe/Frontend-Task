@@ -1,3 +1,5 @@
 <div class="mt-5">
-    <p>home-mobile works!xsavdc</p>
+    <app-chat-sidebar [chatData]="chatItemList" (chatItem)="chatItemDetails($event)"
+        (updateItemsList)="updateNoteItems()" (filterNote)="filerNotesList($event)" (titleChange)="titleChange($event)">
+    </app-chat-sidebar>
 </div>

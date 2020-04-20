@@ -1,5 +1,4 @@
 import { Router } from '@angular/router';
-import { CHAT_LIST } from 'src/app/core/constants/json.constant';
 import { AppData } from 'src/app/shared';
 
 export abstract class HomeComponent {
@@ -14,24 +13,37 @@ export abstract class HomeComponent {
     ngOnInit() {
     }
 
-    onAccountItemClick(obj) {
-        console.log(obj);
-        this.router.navigate([obj.url]);
+    chatItemDetails(event) {
+        if (event) {
+            this.title = event.name;
+            this.selectedItem = event;
+        }
+        if (AppData.detailsChatList.length === 0) {
+            this.title = '';
+            this.chatItemList = [];
+        } else {
+            this.chatItemList = AppData.detailsChatList;
+        }
 
     }
-    chatItemDetails(event) {
-        this.title = event.name;
-        this.selectedItem = event;
-        console.log('event', event, this.title);
-    }
     onTitleChange(titleValue: string) {
-        console.log(titleValue);
         this.chatItemList.find(item => {
             if (item.id == this.selectedItem.id) {
                 item.name = titleValue;
             }
         })
         AppData.chatSub$.next(this.chatItemList);
+    }
+
+    updateNoteItems() {
+        this.chatItemList = AppData.detailsChatList;
+    }
+
+    filerNotesList(filerItems) {
+        this.chatItemList = filerItems;
+    }
+    titleChange(titleValue) {
+        this.onTitleChange(titleValue);
     }
 
 }

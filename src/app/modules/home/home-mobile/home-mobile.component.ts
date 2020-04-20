@@ -14,7 +14,6 @@ export class HomeMobileComponent extends HomeComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log(this.chatItemList);
   }
 
 }
